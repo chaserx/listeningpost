@@ -43,3 +43,8 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'dotenv-rails', '~> 2.0.2'
+gem 'responders', '~> 2.0'
+
+gem 'puma', '~> 2.11.3'
+
