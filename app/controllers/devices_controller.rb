@@ -1,7 +1,6 @@
 32class DevicesController < ApplicationController
   respond_to :json
-
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_device, only: [:show, :update, :destroy]
 
   # GET /devices
   # GET /devices.json

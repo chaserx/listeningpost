@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  respond_to :json
+  before_action :set_message, only: [:show, :destroy]
 
   # GET /messages
   # GET /messages.json
