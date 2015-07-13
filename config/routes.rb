@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :devices
-  post 'devices/:id' => 'devices#message'
+  resources :devices, only: [:create, :destroy, :index] do
+    resources :messages, only: [:create, :destroy, :index]
+  end
+  post 'devices/:id' => 'messages#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
