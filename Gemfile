@@ -43,9 +43,12 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.3.2'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'rubocop', '~> 0.32.1'
 end
 
 gem 'dotenv-rails', '~> 2.0.2'
 gem 'responders', '~> 2.0'
 gem 'puma', '~> 2.11.3'
 gem 'awesome_print', '~> 1.6.1'
+gem 'httparty', '~> 0.13.5'
