@@ -1,4 +1,4 @@
-32class DevicesController < ApplicationController
+class DevicesController < ApplicationController
   respond_to :json
   before_action :set_device, only: [:show, :update, :destroy]
 

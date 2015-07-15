@@ -7,6 +7,7 @@ class Message < ActiveRecord::Base
   private
 
   def send_callback
+    # Note(chaserx): move this to an async queue one day
     if callback=device.callback
       result = HTTParty.post(callback.url.to_str,
                              body: { callback.body }.to_json,
