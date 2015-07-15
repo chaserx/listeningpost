@@ -34,13 +34,6 @@ RSpec.describe CallbacksController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new callback as @callback" do
-      get :new, {}, valid_session
-      expect(assigns(:callback)).to be_a_new(Callback)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested callback as @callback" do
       callback = Callback.create! valid_attributes

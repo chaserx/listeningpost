@@ -4,35 +4,27 @@ RSpec.describe CallbacksController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/callbacks").to route_to("callbacks#index")
-    end
-
-    it "routes to #new" do
-      expect(:get => "/callbacks/new").to route_to("callbacks#new")
+      expect(get: "/devices/abc123/callbacks").to route_to("callbacks#index", device_id: 'abc123',)
     end
 
     it "routes to #show" do
-      expect(:get => "/callbacks/1").to route_to("callbacks#show", :id => "1")
-    end
-
-    it "routes to #edit" do
-      expect(:get => "/callbacks/1/edit").to route_to("callbacks#edit", :id => "1")
+      expect(get: "/devices/abc123/callbacks/xyz321").to route_to("callbacks#show", device_id: 'abc123', id: 'xyz321')
     end
 
     it "routes to #create" do
-      expect(:post => "/callbacks").to route_to("callbacks#create")
+      expect(post: "/devices/abc123/callbacks").to route_to("callbacks#create", device_id: 'abc123',)
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/callbacks/1").to route_to("callbacks#update", :id => "1")
+      expect(put: "/devices/abc123/callbacks/xyz321").to route_to("callbacks#update", device_id: 'abc123', id: 'xyz321')
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/callbacks/1").to route_to("callbacks#update", :id => "1")
+      expect(patch: "/devices/abc123/callbacks/xyz321").to route_to("callbacks#update", device_id: 'abc123', id: 'xyz321')
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/callbacks/1").to route_to("callbacks#destroy", :id => "1")
+      expect(delete: "/devices/abc123/callbacks/xyz321").to route_to("callbacks#destroy", device_id: 'abc123', id: 'xyz321')
     end
 
   end
