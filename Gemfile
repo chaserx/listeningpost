@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.3.2'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'rubocop', '~> 0.32.1'
+  gem 'rspec-collection_matchers', '~> 1.1.2'
 end
 
 gem 'dotenv-rails', '~> 2.0.2'
