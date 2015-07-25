@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
@@ -43,9 +42,13 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.3.2'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'rubocop', '~> 0.32.1'
+  gem 'rspec-collection_matchers', '~> 1.1.2'
 end
 
 gem 'dotenv-rails', '~> 2.0.2'
 gem 'responders', '~> 2.0'
 gem 'puma', '~> 2.11.3'
 gem 'awesome_print', '~> 1.6.1'
+gem 'httparty', '~> 0.13.5'
