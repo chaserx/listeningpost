@@ -1,5 +1,7 @@
 # Listening Post
 
+[![Circle CI](https://circleci.com/gh/chaserx/listeningpost.svg?style=svg)](https://circleci.com/gh/chaserx/listeningpost)
+
 ## What
 
 An Internet of Things relay station.
