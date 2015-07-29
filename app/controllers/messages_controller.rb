@@ -16,10 +16,11 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = Message.new(message_params.merge(ip_address: request.remote_ip))
     @message.device_id = params[:id] || params[:device_id]
     respond_to do |format|
       if @message.save
+        # NOTE(chaserx): i think here is where the callbacks and webhooks should happen
         format.json { render :show, status: :created, location: [@message.device, @message] }
       else
         format.json { render json: @message.errors, status: :unprocessable_entity }
