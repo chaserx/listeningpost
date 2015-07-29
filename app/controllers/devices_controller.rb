@@ -5,7 +5,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    @devices = Device.all # one day reduce by current user
   end
 
   # GET /devices/1
@@ -56,6 +56,6 @@ class DevicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def device_params
-      params[:device]
+      params[:device].permit(:name)
     end
 end
