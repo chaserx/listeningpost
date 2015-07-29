@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
   belongs_to :device
   validates :device, presence: true
-
+  validates :ip_address, presence: true
   after_create :send_callback
 
   private

@@ -47,6 +47,12 @@ group :development, :test do
   gem 'rspec-collection_matchers', '~> 1.1.2'
 end
 
+group :test do
+  gem 'vcr', '~> 2.9.3'
+  gem 'webmock', '~> 1.21.0'
+  gem 'database_cleaner', '~> 1.4.1'
+end
+
 gem 'dotenv-rails', '~> 2.0.2'
 gem 'responders', '~> 2.0'
 gem 'puma', '~> 2.11.3'
