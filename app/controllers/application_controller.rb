@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, if: proc { |c|
     c.request.format.json?
   }
+
+  rescue_from ActiveRecord::RecordNotFound do
+    render json: {error: '404 Not Found'}, status: :not_found
+  end
 end
