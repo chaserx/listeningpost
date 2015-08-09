@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714124149) do
+ActiveRecord::Schema.define(version: 20150730212217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 20150714124149) do
     t.string   "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string   "message_body",                  null: false
+    t.uuid     "device_id",                     null: false
+    t.string   "url",                           null: false
+    t.string   "headers"
+    t.string   "access_token"
+    t.string   "request_type", default: "POST"
+    t.json     "payload"
+    t.string   "query"
+    t.string   "auth"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end
