@@ -8,6 +8,8 @@ An Internet of Things Relay Station.
 
 ## Goals
 
+#### Work in Progress
+
 Main goal: create an application that estabilishes an IoT device endpoint for
 said devices to POST data. Output from these devices can be watched by associated
 devices. Message POSTs can trigger one or more webhooks. In this way, _listeningpost_
