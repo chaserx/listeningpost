@@ -22,9 +22,9 @@ RSpec.describe DevicesController, type: :controller do
   end
 
   describe 'create' do
-    let(:make_request) {
+    let(:make_request) do
       post :create, format: :json, device: { name: 'fancy device 13' }
-    }
+    end
 
     it 'responds successfully' do
       make_request

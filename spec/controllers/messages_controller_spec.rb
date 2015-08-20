@@ -19,9 +19,9 @@ RSpec.describe MessagesController, type: :controller do
   end
 
   describe 'create' do
-    let(:make_request) {
+    let(:make_request) do
       post :create, device_id: device.id, format: :json, message: { body: 'holla' }
-    }
+    end
 
     it 'responds successfully' do
       make_request
@@ -35,9 +35,9 @@ RSpec.describe MessagesController, type: :controller do
 
   describe 'show' do
     let(:message) { create(:message) }
-    let(:make_request) {
+    let(:make_request) do
       get :show, device_id: device.id, format: :json, id: message.id
-    }
+    end
 
     it 'responds successfully' do
       make_request

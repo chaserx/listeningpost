@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject {
+  subject do
     build(:user, email: nil, password: nil, password_confirmation: nil)
-  }
+  end
 
   describe 'an invalid user' do
     it 'requires an email address' do

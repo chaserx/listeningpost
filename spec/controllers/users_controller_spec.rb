@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe 'create' do
-    let(:make_request) {
+    let(:make_request) do
       post :create, format: :json, user: { email: 'me@example.com',
                                            password: 'abc123xyz',
                                            password_confirmation: 'abc123xyz' }
-    }
+    end
 
     it 'responds successfully' do
       make_request

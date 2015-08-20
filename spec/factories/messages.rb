@@ -7,4 +7,3 @@ FactoryGirl.define do
     body { ('a'..'z').to_a.shuffle.join }
   end
 end
-
