@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730212217) do
+ActiveRecord::Schema.define(version: 20150820022540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,25 +21,43 @@ ActiveRecord::Schema.define(version: 20150730212217) do
     t.string   "body"
     t.string   "url"
     t.uuid     "device_id"
+    t.uuid     "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "callbacks", ["device_id"], name: "index_callbacks_on_device_id", using: :btree
+  add_index "callbacks", ["user_id"], name: "index_callbacks_on_user_id", using: :btree
+
   create_table "devices", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name"
+    t.uuid     "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
 
   create_table "messages", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "body"
     t.uuid     "device_id"
     t.string   "ip_address"
+    t.uuid     "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "webhooks", force: :cascade do |t|
+  add_index "messages", ["device_id"], name: "index_messages_on_device_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "webhooks", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "message_body",                  null: false
     t.uuid     "device_id",                     null: false
     t.string   "url",                           null: false
@@ -49,8 +67,12 @@ ActiveRecord::Schema.define(version: 20150730212217) do
     t.json     "payload"
     t.string   "query"
     t.string   "auth"
+    t.uuid     "user_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "webhooks", ["device_id"], name: "index_webhooks_on_device_id", using: :btree
+  add_index "webhooks", ["user_id"], name: "index_webhooks_on_user_id", using: :btree
 
 end

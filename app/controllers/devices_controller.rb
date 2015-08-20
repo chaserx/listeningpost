@@ -1,5 +1,4 @@
 class DevicesController < ApplicationController
-  respond_to :json
   before_action :set_device, only: [:show, :update, :destroy]
 
   # GET /devices
@@ -18,33 +17,30 @@ class DevicesController < ApplicationController
   def create
     @device = Device.new(device_params)
 
-    respond_to do |format|
-      if @device.save
-        format.json { render :show, status: :created, location: @device }
-      else
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
+    if @device.save
+      render :show, status: :created, location: @device
+    else
+      render json: @device.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /devices/1
   # PATCH/PUT /devices/1.json
   def update
-    respond_to do |format|
-      if @device.update(device_params)
-        format.json { render :show, status: :ok, location: @device }
-      else
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
+    if @device.update(device_params)
+      render :show, status: :ok, location: @device
+    else
+      render json: @device.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /devices/1
   # DELETE /devices/1.json
   def destroy
-    @device.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    if @device.destroy
+      head :no_content
+    else
+      render json: @device.errors, status: :unprocessable_entity
     end
   end
 
