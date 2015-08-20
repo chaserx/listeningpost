@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :webhooks, only: [:create, :destroy, :index, :show, :update]
   end
   post 'devices/:id' => 'messages#create'
+  post '/users' => 'users#create'
 end
