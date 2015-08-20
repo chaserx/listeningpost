@@ -1,5 +1,4 @@
 class CallbacksController < ApplicationController
-  respond_to :json
   before_action :set_callback, only: [:show, :update, :destroy]
 
   # GET /callbacks
@@ -18,33 +17,30 @@ class CallbacksController < ApplicationController
   def create
     @callback = Callback.new(callback_params)
 
-    respond_to do |format|
-      if @callback.save
-        format.json { render :show, status: :created }
-      else
-        format.json { render json: @callback.errors, status: :unprocessable_entity }
-      end
+    if @callback.save
+      render :show, status: :created
+    else
+      render json: @callback.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /callbacks/1
   # PATCH/PUT /callbacks/1.json
   def update
-    respond_to do |format|
-      if @callback.update(callback_params)
-        format.json { render :show, status: :ok }
-      else
-        format.json { render json: @callback.errors, status: :unprocessable_entity }
-      end
+    if @callback.update(callback_params)
+      render :show, status: :ok
+    else
+      render json: @callback.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /callbacks/1
   # DELETE /callbacks/1.json
   def destroy
-    @callback.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    if @callback.destroy
+      head :no_content
+    else
+      render json: @callback.errors, status: :unprocessable_entity
     end
   end
 

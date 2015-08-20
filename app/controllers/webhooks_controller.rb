@@ -4,7 +4,7 @@ class WebhooksController < ApplicationController
   # GET /webhooks
   # GET /webhooks.json
   def index
-    @webhooks = Webhook.all
+    @webhooks = Webhook.where(device_id: params[:device_id])
   end
 
   # GET /webhooks/1
@@ -16,34 +16,30 @@ class WebhooksController < ApplicationController
   # POST /webhooks.json
   def create
     @webhook = Webhook.new(webhook_params)
-
-    respond_to do |format|
-      if @webhook.save
-        format.json { render :show, status: :created, location: @webhook }
-      else
-        format.json { render json: @webhook.errors, status: :unprocessable_entity }
-      end
+    if @webhook.save
+      render :show, status: :created, location: @webhook
+    else
+      render json: @webhook.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /webhooks/1
   # PATCH/PUT /webhooks/1.json
   def update
-    respond_to do |format|
-      if @webhook.update(webhook_params)
-        format.json { render :show, status: :ok, location: @webhook }
-      else
-        format.json { render json: @webhook.errors, status: :unprocessable_entity }
-      end
+    if @webhook.update(webhook_params)
+      render :show, status: :ok, location: @webhook
+    else
+      render json: @webhook.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /webhooks/1
   # DELETE /webhooks/1.json
   def destroy
-    @webhook.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    if @webhook.destroy
+      head :no_content
+    else
+      render json: @webhook.errors, status: :unprocessable_entity
     end
   end
 
