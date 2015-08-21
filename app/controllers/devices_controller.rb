@@ -17,7 +17,7 @@ class DevicesController < ApplicationController
   # POST /devices.json
   def create
     @device = Device.new(device_params)
-    @device.user_id = @current_user.id
+    @device.user_id = current_user.id
     if @device.save
       render :show, status: :created, location: @device
     else
