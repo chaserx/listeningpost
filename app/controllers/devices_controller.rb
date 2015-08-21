@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+  before_action :authenticate
   before_action :set_device, only: [:show, :update, :destroy]
 
   # GET /devices
@@ -16,7 +17,7 @@ class DevicesController < ApplicationController
   # POST /devices.json
   def create
     @device = Device.new(device_params)
-
+    @device.user_id = @current_user.id
     if @device.save
       render :show, status: :created, location: @device
     else
