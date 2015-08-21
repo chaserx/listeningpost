@@ -1,3 +1,5 @@
+# credit:
+# https://coderwall.com/p/ijt1ia/testing-with-auth0-and-rspec-in-rails-ember-cli
 module SessionHelper
   def setup_knock
     request.headers['authorization'] = 'Bearer JWTTOKEN'
