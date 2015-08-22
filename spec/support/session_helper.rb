@@ -3,7 +3,7 @@
 module SessionHelper
   def setup_knock
     request.headers['authorization'] = 'Bearer JWTTOKEN'
-    knock = double("Knock")
+    knock = double('Knock')
     user = create(:user)
     yield user if block_given?
     allow(knock).to receive(:current_user).and_return(user)

@@ -1,4 +1,4 @@
-Knock.setup do |config|
+Knock.setup do |_config|
   ## User handle attribute
   ## ---------------------
   ##
@@ -30,7 +30,6 @@ Knock.setup do |config|
   ## Default:
   # config.current_user_from_token = -> (claims) { User.find claims['sub'] }
 
-
   ## Expiration claim
   ## ----------------
   ##
@@ -38,7 +37,6 @@ Knock.setup do |config|
   ##
   ## Default:
   # config.token_lifetime = 1.day
-
 
   ## Audience claim
   ## --------------
@@ -51,7 +49,6 @@ Knock.setup do |config|
 
   ## If using Auth0, uncomment the line below
   # config.token_audience = -> { Rails.application.secrets.auth0_client_id }
-
 
   ## Signature key
   ## -------------
