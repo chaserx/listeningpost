@@ -5,7 +5,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all # one day reduce by current user
+    @devices = Device.where(user_id: current_user.id)
   end
 
   # GET /devices/1

@@ -55,9 +55,10 @@ RSpec.describe DevicesController, type: :controller do
   context 'with a valid auth token' do
     d_count = 10
     before do
-      setup_knock
-      d_count.times do
-        create(:device)
+      setup_knock do |user|
+        d_count.times do
+          create(:device, user: user)
+        end
       end
     end
 
