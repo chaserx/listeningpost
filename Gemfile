@@ -49,6 +49,7 @@ group :test do
   gem 'vcr', '~> 2.9.3'
   gem 'webmock', '~> 1.21.0'
   gem 'database_cleaner', '~> 1.4.1'
+  gem 'simplecov', require: false
 end
 
 gem 'dotenv-rails', '~> 2.0.2'
