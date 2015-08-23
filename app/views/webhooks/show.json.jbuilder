@@ -1,1 +1,1 @@
-json.extract! @webhook, :id, :created_at, :updated_at
+json.partial! 'webhooks/webhook', webhook: @webhook

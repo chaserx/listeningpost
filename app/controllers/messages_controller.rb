@@ -1,18 +1,15 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :destroy]
 
-  # GET /messages
   # GET /messages.json
   def index
     @messages = Message.where(device_id: params[:device_id])
   end
 
-  # GET /messages/1
   # GET /messages/1.json
   def show
   end
 
-  # POST /messages
   # POST /messages.json
   def create
     @message = Message.new(message_params.merge(ip_address: request.remote_ip))
