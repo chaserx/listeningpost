@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Webhook, type: :model do
   describe 'validations' do
-    subject { build(:callback, url: nil, device: nil) }
+    subject { build(:webhook, url: nil, device: nil) }
 
     it 'requires a url' do
       expect(subject).to have(1).error_on(:url)
