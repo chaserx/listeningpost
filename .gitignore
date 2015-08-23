@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 .DS_Store
+.ruby-version
 
 # Ignore bundler config.
 /.bundle
@@ -13,3 +14,7 @@
 /log/*
 !/log/.keep
 /tmp
+.env
+coverage/
+# Ignore editor swapfiles
+*.swp
