@@ -2,18 +2,15 @@ class DevicesController < ApplicationController
   before_action :authenticate
   before_action :set_device, only: [:show, :update, :destroy]
 
-  # GET /devices
   # GET /devices.json
   def index
     @devices = Device.where(user_id: current_user.id)
   end
 
-  # GET /devices/1
   # GET /devices/1.json
   def show
   end
 
-  # POST /devices
   # POST /devices.json
   def create
     @device = Device.new(device_params)
@@ -25,7 +22,6 @@ class DevicesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /devices/1
   # PATCH/PUT /devices/1.json
   def update
     if @device.update(device_params)
@@ -35,7 +31,6 @@ class DevicesController < ApplicationController
     end
   end
 
-  # DELETE /devices/1
   # DELETE /devices/1.json
   def destroy
     if @device.destroy
