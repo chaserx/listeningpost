@@ -47,7 +47,8 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def device_params
     params[:device].permit(:name)
   end

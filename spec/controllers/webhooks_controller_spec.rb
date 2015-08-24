@@ -15,10 +15,10 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     describe 'create' do
-      let(:make_request) {
+      let(:make_request) do
         post :create, webhook: attributes_for(:webhook), device_id: device.id,
                       format: :json
-      }
+      end
 
       it 'responds with unauthorized' do
         make_request
@@ -31,10 +31,10 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     describe 'destroy' do
-      let(:make_request) {
+      let(:make_request) do
         delete :destroy, id: webhook.to_param, device_id: device.id,
                          format: :json
-      }
+      end
 
       it 'responds unauthorized' do
         make_request
@@ -48,9 +48,9 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     describe 'show' do
-      let(:make_request) {
+      let(:make_request) do
         get :show, id: webhook.to_param, device_id: device.id, format: :json
-      }
+      end
 
       it 'responds unauthorized' do
         make_request
@@ -90,10 +90,10 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     describe 'POST #create' do
-      let(:make_request) {
+      let(:make_request) do
         post :create, webhook: attributes_for(:webhook), device_id: @device.id,
                       format: :json
-      }
+      end
 
       context 'with valid params' do
         it 'creates a new Webhook' do
@@ -170,10 +170,10 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      let(:make_request) {
+      let(:make_request) do
         delete :destroy, id: webhook.to_param, device_id: @device.id,
                          format: :json
-      }
+      end
 
       it 'destroys the requested webhook' do
         expect { make_request }.to change(Webhook, :count).by(-1)

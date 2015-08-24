@@ -23,7 +23,8 @@ RSpec.describe MessagesController, type: :controller do
 
   describe 'create' do
     let(:make_request) do
-      post :create, device_id: device.id, format: :json, message: { body: 'holla' }
+      post :create, device_id: device.id, format: :json,
+                    message: { body: 'holla' }
     end
 
     it 'responds successfully' do

@@ -31,7 +31,8 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def message_params
     params.require(:message).permit(:body).merge(user_id: current_user.id)
   end
