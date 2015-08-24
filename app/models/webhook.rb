@@ -5,4 +5,5 @@ class Webhook < ActiveRecord::Base
   validates :device, presence: true
   validates :url, presence: true # also validate url structure
   validates :message_body, presence: true
+  validates :user, presence: true
 end

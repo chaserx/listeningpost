@@ -5,9 +5,12 @@ RSpec.describe MessagesController, type: :controller do
     ip = '192.168.0.1'
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).
                                                       and_return(ip)
+    setup_knock do |user|
+      @device = create(:device, user: user)
+    end
   end
 
-  let!(:message) { create(:message) }
+  let!(:message) { create(:message, device: @device, user: @device.user) }
   let(:device) { message.device }
 
   describe 'index' do
