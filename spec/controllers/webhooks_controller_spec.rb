@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe WebhooksController, type: :controller do
   context 'with an invalid session' do
     let(:device) { create(:device) }
-    let!(:webhook) { create(:webhook, device: device) }
+    let!(:webhook) { create(:webhook, device: device, user: device.user) }
 
     describe 'index' do
       let(:make_request) { get :index, device_id: device.id, format: :json }
@@ -66,7 +66,7 @@ RSpec.describe WebhooksController, type: :controller do
       end
     end
 
-    let!(:webhook) { create(:webhook, device: @device) }
+    let!(:webhook) { create(:webhook, device: @device, user: @device.user) }
 
     describe 'GET #index' do
       before do

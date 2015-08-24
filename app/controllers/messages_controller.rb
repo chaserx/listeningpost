@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate
   before_action :set_message, only: [:show, :destroy]
 
   # GET /messages.json
@@ -16,7 +17,7 @@ class MessagesController < ApplicationController
     @message.device_id = params[:id] || params[:device_id]
 
     if @message.save
-      # NOTE(chaserx): i think here is where the callbacks and webhooks should happen
+      # NOTE(chaserx): i think here is where the webhooks sending should happen
       render :show, status: :created, location: [@message.device, @message]
     else
       render json: @message.errors, status: :unprocessable_entity
@@ -32,6 +33,6 @@ class MessagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body).merge(user_id: current_user.id)
   end
 end
