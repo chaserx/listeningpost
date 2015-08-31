@@ -1,20 +1,22 @@
 class WebhooksController < ApplicationController
   before_action :authenticate
-  before_action :set_device, execpt: [:index]
+  before_action :set_device
   before_action :set_webhook, only: [:show, :update, :destroy]
 
   # GET /webhooks.json
   def index
-    @webhooks = Webhook.where(device_id: params[:device_id])
+    @webhooks = policy_scope(Webhook).for_device(@device)
   end
 
   # GET /webhooks/1.json
   def show
+    authorize @webhook
   end
 
   # POST /webhooks.json
   def create
     @webhook = Webhook.new(webhook_params)
+    authorize @webhook
     if @webhook.save
       render :show, status: :created, location: [@device, @webhook]
     else
@@ -24,6 +26,7 @@ class WebhooksController < ApplicationController
 
   # PATCH/PUT /webhooks/1.json
   def update
+    authorize @webhook
     if @webhook.update(webhook_params)
       render :show, status: :ok, location: [@device, @webhook]
     else
@@ -33,6 +36,7 @@ class WebhooksController < ApplicationController
 
   # DELETE /webhooks/1.json
   def destroy
+    authorize @webhook
     if @webhook.destroy
       head :no_content
     else
