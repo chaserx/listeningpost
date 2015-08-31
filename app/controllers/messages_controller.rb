@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @message.device_id = params[:id] || params[:device_id]
     authorize @message
     if @message.save
-      # NOTE(chaserx): i think here is where the webhooks sending should happen
+      # TODO(chaserx): i think here is where the webhooks sending should happen
       render :show, status: :created, location: [@message.device, @message]
     else
       render json: @message.errors, status: :unprocessable_entity
