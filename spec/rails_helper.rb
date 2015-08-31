@@ -10,6 +10,7 @@ end
 require 'spec_helper'
 require 'rspec/rails'
 require 'database_cleaner'
+require 'pundit/rspec'
 
 if ENV['RAILS_ENV'] == 'test'
   require 'simplecov'
