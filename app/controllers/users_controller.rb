@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def create
+    skip_authorization
     @user = User.new(user_params)
     if @user.save
       render :show, status: :created
@@ -12,6 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    authorize @user
+  end
+
+  def update
+    authorize @user
   end
 
   private

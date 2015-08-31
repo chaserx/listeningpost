@@ -4,17 +4,19 @@ class DevicesController < ApplicationController
 
   # GET /devices.json
   def index
-    @devices = Device.where(user_id: current_user.id)
+    @devices = policy_scope(Device)
   end
 
   # GET /devices/1.json
   def show
+    authorize @device
   end
 
   # POST /devices.json
   def create
     @device = Device.new(device_params)
-    @device.user_id = current_user.id
+    @device.user = current_user
+    authorize @device
     if @device.save
       render :show, status: :created, location: @device
     else
@@ -24,6 +26,7 @@ class DevicesController < ApplicationController
 
   # PATCH/PUT /devices/1.json
   def update
+    authorize @device
     if @device.update(device_params)
       render :show, status: :ok, location: @device
     else
@@ -33,6 +36,7 @@ class DevicesController < ApplicationController
 
   # DELETE /devices/1.json
   def destroy
+    authorize @device
     if @device.destroy
       head :no_content
     else

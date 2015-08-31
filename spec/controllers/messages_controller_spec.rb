@@ -38,7 +38,6 @@ RSpec.describe MessagesController, type: :controller do
   end
 
   describe 'show' do
-    let(:message) { create(:message) }
     let(:make_request) do
       get :show, device_id: device.id, format: :json, id: message.id
     end

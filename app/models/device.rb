@@ -5,4 +5,6 @@ class Device < ActiveRecord::Base
 
   validates :name, presence: true
   validates :user, presence: true
+
+  scope :for_user, ->(user) { where(user_id: user.id) }
 end
