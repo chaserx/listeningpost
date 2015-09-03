@@ -44,6 +44,19 @@ class DevicesController < ApplicationController
     end
   end
 
+  def receive_message
+    @message = Message.new(message_params.merge(ip_address: request.remote_ip))
+    @message.device_id = params[:id]
+    authorize @message
+    if @message.save
+      # TODO(chaserx): i think here is where the webhooks sending should happen
+      render 'messages/show', status: :created,
+                              location: [@message.device, @message]
+    else
+      render json: @message.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -55,5 +68,9 @@ class DevicesController < ApplicationController
   # through.
   def device_params
     params[:device].permit(:name)
+  end
+
+  def message_params
+    params.require(:message).permit(:body).merge(user_id: current_user.id)
   end
 end

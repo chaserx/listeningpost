@@ -159,7 +159,7 @@ RSpec.describe WebhooksController, type: :controller do
         end
 
         it 'assigns the webhook as @webhook' do
-           expect(assigns(:webhook)).to eq(webhook)
+          expect(assigns(:webhook)).to eq(webhook)
         end
 
         it 'returns 422' do

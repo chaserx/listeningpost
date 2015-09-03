@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate
-  before_action :set_message, only: [:show, :destroy]
+  before_action :set_message, only: [:show]
   before_action :set_device
 
   # GET /messages.json
@@ -11,19 +11,6 @@ class MessagesController < ApplicationController
   # GET /messages/1.json
   def show
     authorize @message
-  end
-
-  # POST /messages.json
-  def create
-    @message = Message.new(message_params.merge(ip_address: request.remote_ip))
-    @message.device_id = params[:id] || params[:device_id]
-    authorize @message
-    if @message.save
-      # TODO(chaserx): i think here is where the webhooks sending should happen
-      render :show, status: :created, location: [@message.device, @message]
-    else
-      render json: @message.errors, status: :unprocessable_entity
-    end
   end
 
   private

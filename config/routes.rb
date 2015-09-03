@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show]
   resources :devices, only: [:create, :destroy, :update, :index, :show] do
-    resources :messages, only: [:create, :destroy, :index, :show]
+    resources :messages, only: [:index, :show]
     resources :webhooks, only: [:create, :destroy, :index, :show, :update]
   end
 
-  post 'devices/:id' => 'messages#create'
+  post 'devices/:id', to: 'devices#receive_message'
+  get '/ping', to: 'system#ping'
 end
