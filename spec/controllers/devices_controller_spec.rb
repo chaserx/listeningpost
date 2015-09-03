@@ -120,5 +120,22 @@ RSpec.describe DevicesController, type: :controller do
         expect(assigns(:device)).to eq(device)
       end
     end
+
+    describe 'receive_message' do
+      let(:device) { Device.last }
+      let(:make_request) do
+        post :receive_message, id: device.id, format: :json,
+                               message: { body: 'holla' }
+      end
+
+      it 'responds successfully' do
+        make_request
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'creates a new message' do
+        expect { make_request }.to change(Message, :count).by(1)
+      end
+    end
   end
 end
