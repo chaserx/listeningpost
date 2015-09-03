@@ -1,12 +1,12 @@
 class MessagePolicy < ApplicationPolicy
   attr_reader :current_user, :model
 
-  def initialize(current_user, model)
+  def initialize current_user, model
     @current_user = current_user
     @model = model
   end
 
-  def create?
+  def receive_message?
     @model.user == @current_user
   end
 
@@ -14,18 +14,10 @@ class MessagePolicy < ApplicationPolicy
     @model.user == @current_user
   end
 
-  def update?
-    @model.user == @current_user
-  end
-
-  def destroy?
-    @model.user == @current_user
-  end
-
   class Scope < Scope
     attr_reader :user, :scope
 
-    def initialize(user, scope)
+    def initialize user, scope
       @user = user
       @scope = scope
     end

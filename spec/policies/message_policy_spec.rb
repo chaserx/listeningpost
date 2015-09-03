@@ -8,7 +8,7 @@ describe MessagePolicy do
   let(:message) { create(:message, user: user) }
   let(:other_message) { create(:message, user: other_user) }
 
-  permissions :create? do
+  permissions :receive_message? do
     describe 'a new message' do
       it 'permits a new user to be created with current user' do
         expect(subject).to permit(user, Message.new(user_id: user.id))
@@ -31,22 +31,14 @@ describe MessagePolicy do
   end
 
   permissions :update? do
-    it 'permits a user to update their message' do
-      expect(subject).to permit(user, message)
-    end
-
-    it 'does not permit a new user to update another user\'s message' do
-      expect(subject).not_to permit(user, other_message)
+    it 'does not permit a user to update a previous message' do
+      expect(subject).not_to permit(user, message)
     end
   end
 
   permissions :destroy? do
-    it 'permits a user to destroy their message' do
-      expect(subject).to permit(user, message)
-    end
-
-    it 'does not permit a new user to destroy another user\'s message' do
-      expect(subject).not_to permit(user, other_message)
+    it 'does not permit a new user to destroy a previous message' do
+      expect(subject).not_to permit(user, message)
     end
   end
 end
