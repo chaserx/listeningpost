@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate, only: [:show]
-  before_action :set_user, only: [:show]
+  before_action :authenticate, only: [:show, :update]
+  before_action :set_user, only: [:show, :update]
 
   def create
     skip_authorization
@@ -18,6 +18,11 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
+    if @user.update(user_params)
+      render :show, status: :ok, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private

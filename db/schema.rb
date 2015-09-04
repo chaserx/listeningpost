@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823180402) do
+ActiveRecord::Schema.define(version: 20150820022540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150823180402) do
   add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
 
   create_table "messages", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "subject"
     t.text     "body"
     t.uuid     "device_id"
     t.string   "ip_address"

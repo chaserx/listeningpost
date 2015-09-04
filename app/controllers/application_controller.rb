@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError do
     render json: {error: 'You are not authorized to perform this action.'},
-      status: :unauthorized
+           status: :unauthorized
   end
 end
