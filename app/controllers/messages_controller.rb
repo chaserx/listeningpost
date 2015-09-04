@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate
-  before_action :set_message, only: [:show, :destroy]
+  before_action :set_message, only: [:show]
   before_action :set_device
 
   # GET /messages.json
@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params.merge(ip_address: request.remote_ip))
-    @message.device_id = params[:id] || params[:device_id]
+    @message.device = @device
     authorize @message
     if @message.save
       # TODO(chaserx): i think here is where the webhooks sending should happen
@@ -32,7 +32,6 @@ class MessagesController < ApplicationController
     @device = Device.find(params[:device_id])
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_message
     @message = Message.find(params[:id])
   end
