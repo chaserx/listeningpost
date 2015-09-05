@@ -12,14 +12,16 @@ An Internet of Things Relay Station.
 
 Main goal: create an application that estabilishes an IoT device endpoint for
 said devices to POST data. Output from these devices can be watched by associated
-devices. Message POSTs can trigger one or more webhooks. In this way, _listeningpost_
-could act as a signal amplifier.
+devices. Message POSTs can trigger one or more webhooks.
 
-- simple user/password auth including token auth
+##### some planned features
+
+- simple user/password auth including token auth with JWT
 - RESTful API for users, devices, messages, webhooks
 - create device at /devices
-- accept POST to /devices/abc-123-xyz-pdq
-- GET data feed at /devices/abc-123-xyz-pdq
+- accept message for a device via POST to /devices/abc-123-xyz-pdq/messages
+- GET data feed at /devices/abc-123-xyz-pdq/messages
+- send optional filter to limit return of messages
 - prep for update to Rails 5 on release
 - build CLI app possibly in Go
 
@@ -35,23 +37,29 @@ could act as a signal amplifier.
 
 ### Configuration
 
+### Database initialization
+
+#### Mac
+
+- `brew install postgres`
+- `initdb /usr/local/var/postgres -E utf8`
+
 ### Database creation
 
 - `bundle exec rake db:create`
 - `bundle exec rake db:migrate`
 
-### Database initialization
-
-- `brew install postgres`
-- `initdb /usr/local/var/postgres -E utf8`
-
 ### How to run the test suite
 
 - `bundle exec rspec spec`
 
+### How to run the style linter
+
+- `bundle exec rubocop`
+
 ### Services (job queues, cache servers, search engines, etc.)
 
-Use foreman. `gem install foreman`. `foreman start`
+Use foreman to manage processes. `gem install foreman`. `foreman start`
 
 ### Deployment instructions
 
