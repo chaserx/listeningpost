@@ -161,7 +161,7 @@ Style/BlockEndNewline:
   Enabled: false
 
 # Cop supports --auto-correct.
-Style/Blocks:
+Style/BlockDelimiters:
   Enabled: false
 
 # Cop supports --auto-correct.
