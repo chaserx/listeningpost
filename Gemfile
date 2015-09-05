@@ -41,7 +41,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.3.2'
   gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'rubocop', '~> 0.32.1'
+  gem 'rubocop', '~> 0.34.0'
   gem 'rspec-collection_matchers', '~> 1.1.2'
 end
 
